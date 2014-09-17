@@ -56,8 +56,17 @@ public class HockeyAppIOS : MonoBehaviour {
 	private static extern string HockeyApp_GetAppVersion();
 	[DllImport("__Internal")]
 	private static extern string HockeyApp_GetBundleIdentifier();
+	[DllImport("libc")]
+	private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
 	#endif
-	
+
+	//SIGILL , SIGINT , SIGTERM
+	enum Signal 
+	{ 
+		SIGBUS = 10, 
+		SIGSEGV = 11, 
+	}
+
 	void Awake(){
 		
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
@@ -72,6 +81,7 @@ public class HockeyAppIOS : MonoBehaviour {
 				StartCoroutine(SendLogs(GetLogFiles()));
 			}
 		}
+		StartCrashManager();
 		#endif
 	}
 
@@ -95,10 +105,30 @@ public class HockeyAppIOS : MonoBehaviour {
 		Application.RegisterLogCallback(null);
 	}
 
-	void GameViewLoaded(string message) { 
+	/// <summary>
+	/// Start HockeyApp for Unity.
+	/// There is a problem with PLCrashReporter and some exceptions in C#. This is a workaround for it
+	/// See http://stackoverflow.com/questions/14499334/how-to-prevent-ios-crash-reporters-from-crashing-monotouch-apps
+	/// </summary>
+	protected void StartCrashManager() {
 
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
+		IntPtr sigbus = Marshal.AllocHGlobal (512);
+		IntPtr sigsegv = Marshal.AllocHGlobal (512);
+
+		// Store Mono SIGSEGV and SIGBUS handlers
+		sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
+		sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+
+		// Enable crash reporting libraries
 		HockeyApp_StartHockeyManager(appID, serverURL, authenticationType, secret, updateManager, autoUpload);
+
+		// Restore Mono SIGSEGV and SIGBUS handlers            
+		sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
+		sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+
+		Marshal.FreeHGlobal (sigbus);
+		Marshal.FreeHGlobal (sigsegv);
 		#endif
 	}
 
