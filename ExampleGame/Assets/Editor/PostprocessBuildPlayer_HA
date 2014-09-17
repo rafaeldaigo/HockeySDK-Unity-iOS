@@ -138,7 +138,7 @@ def addAdditionalFiles(assets_path, install_path, project):
 def getAssetsPath(source_path):
 
     path_elements = source_path.split('/')
-    assets_path = ''
+    assets_path = path_elements[0]
     for item in path_elements[1:-2]:
         assets_path = assets_path +'/' + item
 
