@@ -94,9 +94,15 @@ public class TestUI : MonoBehaviour{
 			StartCoroutine(CorutineNullCrash());	
 		}
 
-		GUI.Label(GetControlRect(9), "Features");
+		if(GUI.Button(GetControlRect(9), "Unity Null Reference"))
+		{
+			Renderer crashRenderer = null;
+			crashRenderer.enabled = false;
+		}
 
-		if(GUI.Button(GetControlRect(10), "Show Feedback Form"))
+		GUI.Label(GetControlRect(10), "Features");
+
+		if(GUI.Button(GetControlRect(11), "Show Feedback Form"))
 		{	
 			ShowFeedbackForm();
 		}
@@ -104,6 +110,7 @@ public class TestUI : MonoBehaviour{
 	
 	System.Collections.IEnumerator CorutineNullCrash(){
 
+		yield return null;
 		string crash = null;
 		crash	= crash.ToLower();
 		yield break;
@@ -111,6 +118,7 @@ public class TestUI : MonoBehaviour{
 	
 	System.Collections.IEnumerator CorutineCrash(){	
 
+		yield return null;
 		throw new System.Exception("Custom Coroutine Exception");
 	}
 
