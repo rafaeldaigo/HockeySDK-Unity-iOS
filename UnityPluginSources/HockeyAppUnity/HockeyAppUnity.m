@@ -1,5 +1,7 @@
 #import "HockeyAppUnity.h"
 #import "Utils.h"
+#import "HockeyAppUnityLogger.h"
+#import "CocoaLumberjack.h"
 
 @interface HockeyAppUnity()
 
@@ -54,7 +56,8 @@
 
 + (void)configHockeyManagerWithAppIdentifier:(NSString *)appIdentifier serverURL:(NSString *)serverURL{
   
-  [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:appIdentifier];
+  [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:appIdentifier
+                                                           delegate:[HockeyAppUnityLogger sharedHockeyLogger]];
   
   if(serverURL && serverURL.length > 0) {
     [[BITHockeyManager sharedHockeyManager] setServerURL:serverURL];
@@ -116,6 +119,16 @@
   NSString *msg = @"";
   NSString *method = @"GameViewLoaded";
   UnitySendMessage([gameObj UTF8String], [method UTF8String], [msg UTF8String]);
+}
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
++ (void)leaveBreadcrumb:(NSString *)breadcrumb {
+  DDLogInfo(@"%@",breadcrumb);
+}
+
++ (void)logError:(NSString *)error {
+  DDLogError(@"%@",error);
 }
 
 @end

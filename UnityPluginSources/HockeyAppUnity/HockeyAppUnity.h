@@ -65,5 +65,7 @@ extern "C" {
 + (NSString *)bundleIdentifier;
 + (BOOL)handleOpenURL:(NSURL *) url sourceApplication:(NSString *) sourceApplication annotation:(id) annotation;
 + (void) sendViewLoadedMessageToUnity;
++ (void)leaveBreadcrumb:(NSString *)breadcrumb;
++ (void)logError:(NSString *)error;
 
 @end

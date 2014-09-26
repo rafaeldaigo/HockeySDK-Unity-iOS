@@ -18,6 +18,17 @@
 		1BC5D68518D71F0B008CB6F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC5D68418D71F0B008CB6F8 /* Security.framework */; };
 		1BC5D68718D71F16008CB6F8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC5D68618D71F16008CB6F8 /* SystemConfiguration.framework */; };
 		1BC5D68918D71F1F008CB6F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC5D68818D71F1F008CB6F8 /* UIKit.framework */; };
+		F354502419D5B4AD00D8A254 /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6CD19D5ACBE0073C965 /* CLIColor.m */; };
+		F354502519D5B4AD00D8A254 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6D019D5ACBE0073C965 /* DDAbstractDatabaseLogger.m */; };
+		F354502619D5B4AD00D8A254 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6D219D5ACBE0073C965 /* DDASLLogCapture.m */; };
+		F354502719D5B4AD00D8A254 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6D419D5ACBE0073C965 /* DDASLLogger.m */; };
+		F354502819D5B4AD00D8A254 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6D719D5ACBE0073C965 /* DDFileLogger.m */; };
+		F354502919D5B4AD00D8A254 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6DA19D5ACBE0073C965 /* DDLog.m */; };
+		F354502A19D5B4AD00D8A254 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6DD19D5ACBE0073C965 /* DDTTYLogger.m */; };
+		F354502B19D5B4AD00D8A254 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6E019D5ACBE0073C965 /* DDContextFilterLogFormatter.m */; };
+		F354502C19D5B4AD00D8A254 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6E219D5ACBE0073C965 /* DDDispatchQueueLogFormatter.m */; };
+		F354502D19D5B4AD00D8A254 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6E419D5ACBE0073C965 /* DDMultiFormatter.m */; };
+		F3A5D6A419D5A8910073C965 /* HockeyAppUnityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A5D6A319D5A8910073C965 /* HockeyAppUnityLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +102,32 @@
 		1BC5D68418D71F0B008CB6F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1BC5D68618D71F16008CB6F8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1BC5D68818D71F1F008CB6F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F3A5D6A219D5A8910073C965 /* HockeyAppUnityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HockeyAppUnityLogger.h; sourceTree = "<group>"; };
+		F3A5D6A319D5A8910073C965 /* HockeyAppUnityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HockeyAppUnityLogger.m; sourceTree = "<group>"; };
+		F3A5D6CC19D5ACBE0073C965 /* CLIColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLIColor.h; sourceTree = "<group>"; };
+		F3A5D6CD19D5ACBE0073C965 /* CLIColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLIColor.m; sourceTree = "<group>"; };
+		F3A5D6CE19D5ACBE0073C965 /* CocoaLumberjack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaLumberjack.h; sourceTree = "<group>"; };
+		F3A5D6CF19D5ACBE0073C965 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		F3A5D6D019D5ACBE0073C965 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		F3A5D6D119D5ACBE0073C965 /* DDASLLogCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDASLLogCapture.h; sourceTree = "<group>"; };
+		F3A5D6D219D5ACBE0073C965 /* DDASLLogCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDASLLogCapture.m; sourceTree = "<group>"; };
+		F3A5D6D319D5ACBE0073C965 /* DDASLLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		F3A5D6D419D5ACBE0073C965 /* DDASLLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		F3A5D6D519D5ACBE0073C965 /* DDAssertMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDAssertMacros.h; sourceTree = "<group>"; };
+		F3A5D6D619D5ACBE0073C965 /* DDFileLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		F3A5D6D719D5ACBE0073C965 /* DDFileLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		F3A5D6D819D5ACBE0073C965 /* DDLog+LOGV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDLog+LOGV.h"; sourceTree = "<group>"; };
+		F3A5D6D919D5ACBE0073C965 /* DDLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		F3A5D6DA19D5ACBE0073C965 /* DDLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		F3A5D6DB19D5ACBE0073C965 /* DDLogMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDLogMacros.h; sourceTree = "<group>"; };
+		F3A5D6DC19D5ACBE0073C965 /* DDTTYLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		F3A5D6DD19D5ACBE0073C965 /* DDTTYLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		F3A5D6DF19D5ACBE0073C965 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		F3A5D6E019D5ACBE0073C965 /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		F3A5D6E119D5ACBE0073C965 /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		F3A5D6E219D5ACBE0073C965 /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		F3A5D6E319D5ACBE0073C965 /* DDMultiFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
+		F3A5D6E419D5ACBE0073C965 /* DDMultiFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,12 +234,15 @@
 		1BC5D65318D71C66008CB6F8 /* HockeyAppUnity */ = {
 			isa = PBXGroup;
 			children = (
+				F3A5D6CA19D5ACBE0073C965 /* CocoaLumberjack */,
 				1B7F995118D7512100B4A8FA /* HockeySDK */,
 				1BC5D65618D71C66008CB6F8 /* HockeyAppUnity.h */,
 				1BC5D65818D71C66008CB6F8 /* HockeyAppUnity.m */,
 				1BC5D65418D71C66008CB6F8 /* Supporting Files */,
 				1BC1D0601952EBB1006E61BD /* Utils.h */,
 				1BC1D0611952EBB1006E61BD /* Utils.m */,
+				F3A5D6A219D5A8910073C965 /* HockeyAppUnityLogger.h */,
+				F3A5D6A319D5A8910073C965 /* HockeyAppUnityLogger.m */,
 			);
 			path = HockeyAppUnity;
 			sourceTree = "<group>";
@@ -213,6 +253,53 @@
 				1BC5D65518D71C66008CB6F8 /* HockeyAppUnity-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3A5D6CA19D5ACBE0073C965 /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				F3A5D6CB19D5ACBE0073C965 /* CLI */,
+				F3A5D6CE19D5ACBE0073C965 /* CocoaLumberjack.h */,
+				F3A5D6CF19D5ACBE0073C965 /* DDAbstractDatabaseLogger.h */,
+				F3A5D6D019D5ACBE0073C965 /* DDAbstractDatabaseLogger.m */,
+				F3A5D6D119D5ACBE0073C965 /* DDASLLogCapture.h */,
+				F3A5D6D219D5ACBE0073C965 /* DDASLLogCapture.m */,
+				F3A5D6D319D5ACBE0073C965 /* DDASLLogger.h */,
+				F3A5D6D419D5ACBE0073C965 /* DDASLLogger.m */,
+				F3A5D6D519D5ACBE0073C965 /* DDAssertMacros.h */,
+				F3A5D6D619D5ACBE0073C965 /* DDFileLogger.h */,
+				F3A5D6D719D5ACBE0073C965 /* DDFileLogger.m */,
+				F3A5D6D819D5ACBE0073C965 /* DDLog+LOGV.h */,
+				F3A5D6D919D5ACBE0073C965 /* DDLog.h */,
+				F3A5D6DA19D5ACBE0073C965 /* DDLog.m */,
+				F3A5D6DB19D5ACBE0073C965 /* DDLogMacros.h */,
+				F3A5D6DC19D5ACBE0073C965 /* DDTTYLogger.h */,
+				F3A5D6DD19D5ACBE0073C965 /* DDTTYLogger.m */,
+				F3A5D6DE19D5ACBE0073C965 /* Extensions */,
+			);
+			path = CocoaLumberjack;
+			sourceTree = SOURCE_ROOT;
+		};
+		F3A5D6CB19D5ACBE0073C965 /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				F3A5D6CC19D5ACBE0073C965 /* CLIColor.h */,
+				F3A5D6CD19D5ACBE0073C965 /* CLIColor.m */,
+			);
+			path = CLI;
+			sourceTree = "<group>";
+		};
+		F3A5D6DE19D5ACBE0073C965 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3A5D6DF19D5ACBE0073C965 /* DDContextFilterLogFormatter.h */,
+				F3A5D6E019D5ACBE0073C965 /* DDContextFilterLogFormatter.m */,
+				F3A5D6E119D5ACBE0073C965 /* DDDispatchQueueLogFormatter.h */,
+				F3A5D6E219D5ACBE0073C965 /* DDDispatchQueueLogFormatter.m */,
+				F3A5D6E319D5ACBE0073C965 /* DDMultiFormatter.h */,
+				F3A5D6E419D5ACBE0073C965 /* DDMultiFormatter.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +353,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F354502419D5B4AD00D8A254 /* CLIColor.m in Sources */,
+				F354502519D5B4AD00D8A254 /* DDAbstractDatabaseLogger.m in Sources */,
+				F354502619D5B4AD00D8A254 /* DDASLLogCapture.m in Sources */,
+				F354502719D5B4AD00D8A254 /* DDASLLogger.m in Sources */,
+				F354502819D5B4AD00D8A254 /* DDFileLogger.m in Sources */,
+				F354502919D5B4AD00D8A254 /* DDLog.m in Sources */,
+				F354502A19D5B4AD00D8A254 /* DDTTYLogger.m in Sources */,
+				F354502B19D5B4AD00D8A254 /* DDContextFilterLogFormatter.m in Sources */,
+				F354502C19D5B4AD00D8A254 /* DDDispatchQueueLogFormatter.m in Sources */,
+				F354502D19D5B4AD00D8A254 /* DDMultiFormatter.m in Sources */,
+				F3A5D6A419D5A8910073C965 /* HockeyAppUnityLogger.m in Sources */,
 				1BC5D65918D71C66008CB6F8 /* HockeyAppUnity.m in Sources */,
 				1BC1D0621952EBB1006E61BD /* Utils.m in Sources */,
 			);
