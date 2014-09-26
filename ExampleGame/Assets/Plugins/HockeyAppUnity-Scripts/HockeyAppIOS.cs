@@ -410,9 +410,9 @@ public class HockeyAppIOS : MonoBehaviour {
 	/// <param name="stackTrace">The stacktrace for the exception.</param>
 	/// <param name="type">The type of the log message.</param>
 	public void OnHandleLogCallback(string logString, string stackTrace, LogType type){
-		
+
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
-		if(LogType.Assert != type && LogType.Exception != type)	
+		if(LogType.Assert != type && LogType.Exception != type && LogType.Error != type)	
 		{	
 			return;	
 		}		
