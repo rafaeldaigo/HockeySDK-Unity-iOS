@@ -53,6 +53,10 @@ public class HockeyAppIOS : MonoBehaviour {
 	[DllImport("__Internal")]
 	private static extern void HockeyApp_StartHockeyManager(string appID, string serverURL, string authType, string secret, bool updateManagerEnabled, bool autoSendEnabled);
 	[DllImport("__Internal")]
+	private static extern void HockeyApp_LeaveBreadcrumb(string breadcrumb);
+	[DllImport("__Internal")]
+	private static extern void HockeyApp_LogError(string error);
+	[DllImport("__Internal")]
 	private static extern string HockeyApp_GetAppVersion();
 	[DllImport("__Internal")]
 	private static extern string HockeyApp_GetBundleIdentifier();
@@ -62,7 +66,7 @@ public class HockeyAppIOS : MonoBehaviour {
 
 	//SIGILL , SIGINT , SIGTERM
 	enum Signal 
-	{ 
+	{
 		SIGBUS = 10, 
 		SIGSEGV = 11, 
 	}
@@ -91,6 +95,20 @@ public class HockeyAppIOS : MonoBehaviour {
 			System.AppDomain.CurrentDomain.UnhandledException += new System.UnhandledExceptionEventHandler(OnHandleUnresolvedException);
 			Application.RegisterLogCallback(OnHandleLogCallback);
 		}
+		#endif
+	}
+
+	public void LeaveBreadcrumb(string breadcrumb)
+	{
+		#if (UNITY_IPHONE && !UNITY_EDITOR)
+		HockeyApp_LeaveBreadcrumb(breadcrumb);
+		#endif
+	}
+
+	public void LogError(string error)
+	{
+		#if (UNITY_IPHONE && !UNITY_EDITOR)
+		HockeyApp_LogError(error);
 		#endif
 	}
 
@@ -380,6 +398,7 @@ public class HockeyAppIOS : MonoBehaviour {
 	protected virtual void HandleException(string logString, string stackTrace){
 
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
+		LogError(logString + "\n" + stackTrace + "\n");
 		WriteLogToDisk(logString, stackTrace);
 		#endif
 	}
@@ -391,9 +410,9 @@ public class HockeyAppIOS : MonoBehaviour {
 	/// <param name="stackTrace">The stacktrace for the exception.</param>
 	/// <param name="type">The type of the log message.</param>
 	public void OnHandleLogCallback(string logString, string stackTrace, LogType type){
-		
+
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
-		if(LogType.Assert != type && LogType.Exception != type)	
+		if(LogType.Assert != type && LogType.Exception != type && LogType.Error != type)	
 		{	
 			return;	
 		}		
