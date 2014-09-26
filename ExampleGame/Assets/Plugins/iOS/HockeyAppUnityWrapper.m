@@ -33,3 +33,14 @@ char* HockeyApp_GetBundleIdentifier(){
   
   return res;
 }
+
+void HockeyApp_LeaveBreadcrumb(char *breadcrumb) {
+    
+    [HockeyAppUnity leaveBreadcrumb:[NSString stringWithUTF8String:breadcrumb]];
+}
+
+void HockeyApp_ForceFlush() {
+    
+    [HockeyAppUnity forceFlush];
+}
+

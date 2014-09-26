@@ -14,7 +14,7 @@
                    autoSendEnabled:(BOOL)autoSendEnabled;
 
 + (void)startManagerWithIdentifier:(NSString *)appIdentifier
-                         serverUrl:(NSString *)serverURL
+                         serverURL:(NSString *)serverURL
                           authType:(NSString *)authType
                             secret:(NSString *)secret
               updateManagerEnabled:(BOOL)updateManagerEnabled
@@ -25,5 +25,7 @@
 + (NSString *)bundleIdentifier;
 + (BOOL)handleOpenURL:(NSURL *) url sourceApplication:(NSString *) sourceApplication annotation:(id) annotation;
 + (void) sendViewLoadedMessageToUnity;
++ (void)leaveBreadcrumb:(NSString *)breadcrumb;
++ (void)logError:(NSString *)error;
 
 @end

@@ -100,9 +100,14 @@ public class TestUI : MonoBehaviour{
 			crashRenderer.enabled = false;
 		}
 
-		GUI.Label(GetControlRect(10), "Features");
+		if(GUI.Button(GetControlRect(10), "Go To Missing Scene"))
+		{
+			Application.LoadLevel("Missing");
+		}
 
-		if(GUI.Button(GetControlRect(11), "Show Feedback Form"))
+		GUI.Label(GetControlRect(11), "Features");
+
+		if(GUI.Button(GetControlRect(12), "Show Feedback Form"))
 		{	
 			ShowFeedbackForm();
 		}
