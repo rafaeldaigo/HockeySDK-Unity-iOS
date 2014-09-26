@@ -39,8 +39,8 @@ void HockeyApp_LeaveBreadcrumb(char *breadcrumb) {
     [HockeyAppUnity leaveBreadcrumb:[NSString stringWithUTF8String:breadcrumb]];
 }
 
-void HockeyApp_ForceFlush() {
+void HockeyApp_LogError(char *error) {
     
-    [HockeyAppUnity forceFlush];
+    [HockeyAppUnity logError:[NSString stringWithUTF8String:error]];
 }
 
