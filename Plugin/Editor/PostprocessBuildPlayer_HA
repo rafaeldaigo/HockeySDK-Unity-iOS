@@ -69,25 +69,7 @@ def modifyAppController(filename):
     valueToAppend.append(getHockeyAuthentificationCode())
     positionsInMethod.append("begin")
 
-    if not appControllerCategoryExists:
-        methodSignatures.append('- (void)showGameUI:(UIWindow*)window')
-        valueToAppend.append(getViewLoadedCallbackCode())
-        positionsInMethod.append("end")
-
     process_app_controller_wrapper(filename, header, methodSignatures, valueToAppend, positionsInMethod)    
-
-def modifyAppControllerCategory(filename):
-
-    header = importHeader()
-    methodSignatures = []
-    valueToAppend = []
-    positionsInMethod = []
-    
-    methodSignatures.append('- (void)showGameUI')
-    valueToAppend.append(getViewLoadedCallbackCode())
-    positionsInMethod.append("end")
-
-    process_app_controller_wrapper(filename, header, methodSignatures, valueToAppend, positionsInMethod)   
 
 def importHeader():
 
@@ -179,11 +161,6 @@ addFrameworks(project)
 
 assets_path = getAssetsPath(source_path)
 addAdditionalFiles(assets_path, install_path, project)
-
-category_path = install_path + '/Classes/UI/UnityAppController+ViewHandling.mm'
-appControllerCategoryExists = os.path.exists(category_path)
-if appControllerCategoryExists:
-    modifyAppControllerCategory(category_path)
 
 controller_path = install_path + '/Classes/UnityAppController.mm'
 modifyAppController(controller_path)

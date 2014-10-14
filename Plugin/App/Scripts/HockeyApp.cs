@@ -9,7 +9,7 @@ namespace CrashReporter
 		//TODO: REPLACEME
 		// Remember to replace the AppId in the PostProcessBuild_HA (it is only needed if authenticating with browser)
 		// Only the first string is needed, others are optional.
-		static readonly string appID = "REPLACE-ME"; // Your hockey app id
+		static readonly string appID = "8158cc511d6a4d51c7d1d29689941987"; // Your hockey app id
 		static readonly string secret = ""; // Your hockey app secret
 		static readonly string authenticationType = ""; // Your auth type. From http://support.hockeyapp.net/kb/client-integration-ios-mac-os-x/authenticating-users-on-ios
 		static readonly string serverURL = ""; // Your custom server url
@@ -21,15 +21,13 @@ namespace CrashReporter
 		void Start()
 		{
 			#if UNITY_IPHONE
+			HockeyAppIOS.Init(appID, serverURL, authenticationType, secret, updateManager, autoUpload);
 			GameObject hockeyAppManager = new GameObject("HockeyAppUnityIOS");
 			HockeyAppIOS hockeyAppIOS = hockeyAppManager.AddComponent<HockeyAppIOS>();
-			hockeyAppIOS.appID = appID;
-			hockeyAppIOS.secret = secret;
-			hockeyAppIOS.authenticationType = authenticationType;
-			hockeyAppIOS.serverURL = serverURL;
-			hockeyAppIOS.autoUpload = autoUpload;
-			hockeyAppIOS.exceptionLogging = exceptionLogging;
-			hockeyAppIOS.updateManager = updateManager;
+			if (exceptionLogging)
+			{
+				hockeyAppIOS.InitExceptionLogging(appID, serverURL);
+			}
 			#endif
 		}
 	}

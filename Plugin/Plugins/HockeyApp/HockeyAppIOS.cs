@@ -41,13 +41,6 @@ public class HockeyAppIOS : MonoBehaviour {
 	protected const string HOCKEYAPP_CRASHESPATH = "api/2/apps/[APPID]/crashes/upload";
 	protected const int MAX_CHARS = 199800;
 	protected const string LOG_FILE_DIR = "/logs/";
-	public string appID = "your-hockey-app-id";
-	public string secret = "your-hockey-app-secret";
-	public string authenticationType = "your-auth-type";
-	public string serverURL = "your-custom-server-url";
-	public bool autoUpload = false;
-	public bool exceptionLogging = false;
-	public bool updateManager = false;
 
 	#if (UNITY_IPHONE && !UNITY_EDITOR)
 	[DllImport("__Internal")]
@@ -72,41 +65,62 @@ public class HockeyAppIOS : MonoBehaviour {
 	}
 
 	void Awake(){
+        gameObject.name = "HockeyAppUnityIOS";
 		DontDestroyOnLoad(gameObject);
 	}
 
-	// Delay startup to allow setting parameters
-	void Start() {
+    private static bool initialized = false;
+
+    public static void Init(string appID, string serverURL, string authenticationType, string secret, bool updateManager, bool autoUpload)
+    {
+        #if (UNITY_IPHONE && !UNITY_EDITOR)
+        serverURL = serverURL.Trim();
+
+        StartCrashManager(appID, serverURL, authenticationType, secret, updateManager, autoUpload);
+        #endif
+
+        initialized = true;
+    }
+
+    public void InitExceptionLogging(string appID, string serverURL)
+    {
+        if (!initialized)
+        {
+            Debug.Log("Init should be called before InitExceptionLogging");
+            return;
+        }
 
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
 		serverURL = serverURL.Trim();
-		if(exceptionLogging == true && IsConnected() == true)
+		if(IsConnected() == true)
 		{
 			List<string> logFileDirs = GetLogFiles();
 			if ( logFileDirs.Count > 0)
 			{
-				StartCoroutine(SendLogs(GetLogFiles()));
+                StartCoroutine(SendLogs(GetLogFiles(), GetBaseURL(serverURL), appID));
 			}
 		}
 
-		StartCrashManager();
-
-		if(exceptionLogging == true){
-			System.AppDomain.CurrentDomain.UnhandledException += new System.UnhandledExceptionEventHandler(OnHandleUnresolvedException);
-			Application.RegisterLogCallback(OnHandleLogCallback);
-		}
+		System.AppDomain.CurrentDomain.UnhandledException += new System.UnhandledExceptionEventHandler(OnHandleUnresolvedException);
+		Application.RegisterLogCallback(OnHandleLogCallback);
 		#endif
 	}
 
-	public void LeaveBreadcrumb(string breadcrumb)
+	public static void LeaveBreadcrumb(string breadcrumb)
 	{
+        if (!initialized)
+            return;
+
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
 		HockeyApp_LeaveBreadcrumb(breadcrumb);
 		#endif
 	}
 
-	public void LogError(string error)
+	public static void LogError(string error)
 	{
+        if (!initialized)
+            return;
+
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
 		HockeyApp_LogError(error);
 		#endif
@@ -117,7 +131,7 @@ public class HockeyAppIOS : MonoBehaviour {
 	/// There is a problem with PLCrashReporter and some exceptions in C#. This is a workaround for it
 	/// See http://stackoverflow.com/questions/14499334/how-to-prevent-ios-crash-reporters-from-crashing-monotouch-apps
 	/// </summary>
-	protected void StartCrashManager() {
+    static void StartCrashManager(string appID, string serverURL, string authenticationType, string secret, bool updateManager, bool autoUpload) {
 
 		#if (UNITY_IPHONE && !UNITY_EDITOR)
 		IntPtr sigbus = Marshal.AllocHGlobal (512);
@@ -281,12 +295,12 @@ public class HockeyAppIOS : MonoBehaviour {
 	/// <summary>
 	/// Upload existing reports to HockeyApp and delete them locally.
 	/// </summary>
-	protected virtual IEnumerator SendLogs(List<string> logs){
+    protected virtual IEnumerator SendLogs(List<string> logs, string baseURL, string appID){
 
 		foreach (string log in logs) {
 
 			string crashPath = HOCKEYAPP_CRASHESPATH;
-			string url = GetBaseURL() + crashPath.Replace("[APPID]", appID);
+            string url = baseURL + crashPath.Replace("[APPID]", appID);
 			WWWForm postForm = CreateForm (log);
 
 			string lContent = postForm.headers ["Content-Type"].ToString ();
@@ -347,7 +361,7 @@ public class HockeyAppIOS : MonoBehaviour {
 	/// Get the base url used for custom exception reports.
 	/// </summary>
 	/// <returns>A formatted base url.</returns>
-	protected virtual string GetBaseURL() {
+	protected virtual string GetBaseURL(string serverURL) {
 		
 		string baseURL ="";
 		
