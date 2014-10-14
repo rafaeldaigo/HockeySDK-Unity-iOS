@@ -21,15 +21,13 @@ namespace CrashReporter
 		void Start()
 		{
 			#if UNITY_IPHONE
+			HockeyAppIOS.Init(appID, serverURL, authenticationType, secret, updateManager, autoUpload);
 			GameObject hockeyAppManager = new GameObject("HockeyAppUnityIOS");
 			HockeyAppIOS hockeyAppIOS = hockeyAppManager.AddComponent<HockeyAppIOS>();
-			hockeyAppIOS.appID = appID;
-			hockeyAppIOS.secret = secret;
-			hockeyAppIOS.authenticationType = authenticationType;
-			hockeyAppIOS.serverURL = serverURL;
-			hockeyAppIOS.autoUpload = autoUpload;
-			hockeyAppIOS.exceptionLogging = exceptionLogging;
-			hockeyAppIOS.updateManager = updateManager;
+			if (exceptionLogging)
+			{
+				hockeyAppIOS.InitExceptionLogging(appID, serverURL);
+			}
 			#endif
 		}
 	}
